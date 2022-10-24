@@ -77,13 +77,8 @@ public:
         else
         {
             int deqVal = arr[front];
-            int rearVal = arr[rear];
-            arr[5] = 0;
-            for (int i = 0; i < rear+1; i++)
-            {
-                arr[i] = arr[i+1];
-            }
-            rear--;
+            arr[front] = 0;
+            front++;
             return deqVal;
         }
     }
