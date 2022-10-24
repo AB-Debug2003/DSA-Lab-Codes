@@ -44,7 +44,7 @@ public:
         }
     }
 
-    void enqueue(int value)
+    void enQueue(int value)
     {
         if (isFull())
         {
@@ -60,7 +60,7 @@ public:
         }
     }
 
-    int dequeue()
+    int deQueue()
     {
         if (isEmpty())
         {
@@ -123,11 +123,11 @@ int main(){
         case 1:
             cout << "Enqueue Operation \nEnter a value to Enqueue: ";
             cin >> val;
-            q1.enqueue(val);
+            q1.enQueue(val);
             break;
 
         case 2:
-            cout << "Dequeued Value: " << q1.dequeue() << endl <<endl;
+            cout << "Dequeued Value: " << q1.deQueue() << endl <<endl;
             break;
 
         case 3:
