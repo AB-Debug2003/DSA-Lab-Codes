@@ -5,14 +5,14 @@ using namespace std;
 class circularQueue{
     int front,rear;
     int arr[5];
-    int count;
+    int itemCount;
 
 public:
     circularQueue()
     {
         front = -1;
         rear = -1;
-        count = 0;
+        itemCount = 0;
         for (int i = 0; i < 5; i++)
         {
             arr[i] = 0;
@@ -56,7 +56,7 @@ public:
         {
             rear = front = 0;
             arr[rear] = val;
-            count++;
+            itemCount++;
             cout << "Value Enqueued!" << endl;
         }
 
@@ -64,7 +64,7 @@ public:
         {
             rear = (rear + 1) % 5;
             arr[rear] = val;
-            count++;
+            itemCount++;
             cout << "Value Enqueued!" << endl;
         }
     }
@@ -82,7 +82,7 @@ public:
             front = -1;
             rear = -1;
             arr[front] = 0;
-            count--;
+            itemCount--;
             return deqVal;
         }
 
@@ -90,7 +90,7 @@ public:
         {
             int deqVal = arr[front];
             arr[front] = 0;
-            count--;
+            itemCount--;
             front = (front+1) % 5;
             return deqVal;
         }
@@ -98,7 +98,7 @@ public:
 
     int count()
     {
-        return count;
+        return itemCount;
     }
 
     void display()
