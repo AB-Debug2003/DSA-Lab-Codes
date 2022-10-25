@@ -32,7 +32,7 @@ public:
 
     bool isFull()
     {
-        if (rear == 4)
+        if ((rear+1) % 5 == front)
         {
             return true;
         }
@@ -50,10 +50,16 @@ public:
             cout << "Error! Queue is Full" << endl;
         }
         
+        else if (isEmpty())
+        {
+            rear = front = 0;
+            arr[rear] = val;
+            cout << "Value Enqueued!" << endl;
+        }
+
         else
         {
-            front = 0;
-            rear++;
+            rear = (rear + 1) % 5;
             arr[rear] = val;
             cout << "Value Enqueued!" << endl;
         }
@@ -69,15 +75,14 @@ public:
         else if(front == rear)
         {
             arr[front] = 0;
-            front--;
-            rear--;
+            front = rear = -1;
         }
 
         else
         {
             int deqVal = arr[front];
             arr[front] = 0;
-            front++;
+            front = (front+1) % 5;
             return deqVal;
         }
     }
