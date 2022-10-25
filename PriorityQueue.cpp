@@ -51,12 +51,40 @@ public:
             cout << "Queue is Full" << endl;
         }
         
-        else
+        else if(isEmpty())
         {
             front = 0;
-            rear ++;
+            rear= 0;
             arr[rear] = value;
             cout << "Value Enqueued!" << endl;
+        }
+
+        else if(value >= arr[rear])
+        {
+            rear++;
+            arr[rear] = value;
+            cout << "Value Enqueued!" << endl;
+        }
+
+        else
+        {
+         i = rear;
+         while (i != -1)
+         {
+            if (value < arr[i])
+            {
+                arr[i+1] = arr[i];
+                i--;
+            }
+
+            else
+            {
+                arr[i] = value;
+                rear++;
+                cout << "Value Enqueued!" << endl;
+                break;
+            }
+         }
         }
     }
 
@@ -76,10 +104,13 @@ public:
 
         else
         {
-            int deqVal = arr[front];
-            arr[front] = 0;
-            front++;
-            return deqVal;
+            i = front;
+            while (i != rear)
+            {
+                arr[i] = arr[i+1];
+                i++;
+            }
+            rear--;
         }
     }
 
