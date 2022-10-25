@@ -2,20 +2,20 @@
 #include<string>
 using namespace std;
 
-class Queue{
-    int front,rear;
+class PriorityQueue{
+    int front,rear,i,count;
     int arr[5];
 
 public:
-
-    Queue()
+    PriorityQueue()
     {
         front = -1;
         rear = -1;
+        i = 0;
         for (int i = 0; i < 5; i++)
         {
             arr[i] = 0;
-        }
+        } 
     }
 
     bool isEmpty()
@@ -28,7 +28,7 @@ public:
         else
         {
             return false;
-        }
+        }  
     }
 
     bool isFull()
@@ -44,47 +44,50 @@ public:
         }
     }
 
-    void enQueue(int value)
+    void enQueue(int item)
     {
         if (isFull())
         {
             cout << "Queue is Full" << endl;
         }
         
-        else if(isEmpty())
+        else if (isEmpty())
         {
-            front = 0;
-            rear= 0;
-            arr[rear] = value;
+            front++;
+            rear++;
+            arr[rear] = item;
             cout << "Value Enqueued!" << endl;
+            count++;
         }
 
-        else if(value >= arr[rear])
+        else if (item >= arr[rear])
         {
             rear++;
-            arr[rear] = value;
+            arr[rear] = item;
             cout << "Value Enqueued!" << endl;
+            count++;
         }
 
         else
         {
-         i = rear;
-         while (i != -1)
-         {
-            if (value < arr[i])
+            i = rear;
+            while (i != -1)
             {
-                arr[i+1] = arr[i];
-                i--;
+                if (arr[i] > item)
+                {
+                    arr[i+1] = arr[i];
+                    i--;
+                }
+                
+                else
+                {
+                    arr[i+1] = item;
+                    rear++;
+                    cout << "Value Enqueued!" << endl;
+                    break;
+                    count++;
+                }
             }
-
-            else
-            {
-                arr[i] = value;
-                rear++;
-                cout << "Value Enqueued!" << endl;
-                break;
-            }
-         }
         }
     }
 
@@ -92,18 +95,12 @@ public:
     {
         if (isEmpty())
         {
-            cout << "Queue is Empty" << endl;
+            cout << "Queue is Empty!" << endl;
         }
-
-        else if(front == rear)
-        {
-            arr[front] = 0;
-            front--;
-            rear --;
-        }
-
+        
         else
         {
+            int deqVal = arr[front];
             i = front;
             while (i != rear)
             {
@@ -111,13 +108,15 @@ public:
                 i++;
             }
             rear--;
+            count--;
+            return deqVal;
         }
     }
 
-    int count()
+    int itemCount()
     {
-		return(rear - front + 1);
-	}
+        return count;
+    }
 
     void display()
     {
@@ -130,7 +129,7 @@ public:
 };
 
 int main(){
-    Queue q1;
+    PriorityQueue p1;
     int val,option;
     do
     {
@@ -154,15 +153,15 @@ int main(){
         case 1:
             cout << "Enqueue Operation \nEnter a value to Enqueue: ";
             cin >> val;
-            q1.enQueue(val);
+            p1.enQueue(val);
             break;
 
         case 2:
-            cout << "Dequeued Value: " << q1.deQueue() << endl <<endl;
+            cout << "Dequeued Value: " << p1.deQueue() << endl <<endl;
             break;
 
         case 3:
-            if (q1.isEmpty())
+            if (p1.isEmpty())
             {
                 cout << "Queue is Empty" << endl << endl;
             }
@@ -174,7 +173,7 @@ int main(){
             break;
             
         case 4:
-            if (q1.isFull())
+            if (p1.isFull())
             {
                 cout << "Queue is Full" << endl << endl;
             }
@@ -186,11 +185,11 @@ int main(){
             break;
 
         case 5:
-            cout << "Count: " << q1.count() << endl << endl;
+            cout << "Count: " << p1.itemCount() << endl << endl;
             break;
 
         case 6:
-            q1.display();
+            p1.display();
             cout << endl << endl;
             break;
 
@@ -202,6 +201,5 @@ int main(){
             cout << "Enter a valid option!" << endl << endl;
         }
     } while (option != 0 );
-    
     return 0;
 }
