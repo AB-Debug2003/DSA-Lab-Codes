@@ -1,5 +1,7 @@
 #include<iostream>
 #include<string>
+#include <cstdlib>
+#include <ctime>
 using namespace std;
 
 class Giveaway{
@@ -24,9 +26,7 @@ public:
 
     void pickWinner()
     {
-        int lowest=1, highest=index;
-        int range=(highest-lowest)+1;
-        random_integer = lowest + int(range*rand()/(RAND_MAX + 1.0));
+        random_integer = rand() % index; 
         cout << "Giveaway Winner is " << array[random_integer] << endl;
     }
 };
