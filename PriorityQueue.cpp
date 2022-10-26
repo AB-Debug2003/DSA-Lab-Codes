@@ -12,6 +12,7 @@ public:
         front = -1;
         rear = -1;
         i = 0;
+        count = 0;
         for (int i = 0; i < 5; i++)
         {
             arr[i] = 0;
@@ -53,8 +54,8 @@ public:
         
         else if (isEmpty())
         {
-            front++;
-            rear++;
+            front = 0;
+            rear = 0;
             arr[rear] = item;
             cout << "Value Enqueued!" << endl;
             count++;
@@ -68,12 +69,23 @@ public:
             count++;
         }
 
+        else if (arr[front] > item)
+        {
+            for (int i = rear; i >= front; i--)
+            {
+                arr[i+1] = arr[i];
+            }
+            arr[front] = item;
+            count++;
+            rear++;
+        }
+
         else
         {
             i = rear;
             while (i != -1)
             {
-                if (arr[i] > item)
+                if (item < arr[i])
                 {
                     arr[i+1] = arr[i];
                     i--;
@@ -85,9 +97,9 @@ public:
                     rear++;
                     cout << "Value Enqueued!" << endl;
                     break;
-                    count++;
                 }
             }
+            count++;
         }
     }
 
@@ -107,6 +119,7 @@ public:
                 arr[i] = arr[i+1];
                 i++;
             }
+            arr[4] = 0;
             rear--;
             count--;
             return deqVal;
