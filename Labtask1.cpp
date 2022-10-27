@@ -26,7 +26,7 @@ public:
 
     void pickWinner()
     {
-        random_integer = rand() % index; 
+        random_integer = rand() % index;
         cout << "Giveaway Winner is " << array[random_integer] << endl;
     }
 };

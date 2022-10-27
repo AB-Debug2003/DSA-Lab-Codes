@@ -7,7 +7,7 @@ int main()
    {
         randArray[i]=rand()%100;
    }
-    
+
    cout<<"\nElements of the array::"<<endl;
   
    for(int i=0; i<10; i++)
