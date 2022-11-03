@@ -5,7 +5,7 @@ using namespace std;
 class Node{
     int key;
     int data;
-    No
+    Node* next;
 };
 
 int main(){
