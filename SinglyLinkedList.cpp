@@ -200,12 +200,13 @@ public:
         
         else
         {
-            cout << endl << "Singly Linked List Values : ";
+            cout << endl << "Singly Linked List Values : " << endl;
+            cout << endl << "Position   Data" << endl;
             Node * temp = head;
 
             while (temp != NULL) 
             {
-            cout << "(" << temp -> key << "," << temp -> data << ") --> ";
+            cout << temp -> key << "          " << temp -> data << endl;
             temp = temp -> next;
             }
         }
