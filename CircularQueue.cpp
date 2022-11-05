@@ -89,7 +89,12 @@ public:
         else
         {
             int deqVal = arr[front];
-            arr[front] = 0;
+            arr[5] = 0;
+            for (int i = rear; i < 5; i++)
+            {
+                arr[rear] = 0;
+            }
+            
             itemCount--;
             front = (front+1) % 5;
             return deqVal;
