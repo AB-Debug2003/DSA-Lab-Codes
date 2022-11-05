@@ -94,7 +94,6 @@ public:
             {
                 arr[rear] = 0;
             }
-            
             itemCount--;
             front = (front+1) % 5;
             return deqVal;
