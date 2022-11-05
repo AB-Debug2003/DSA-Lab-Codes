@@ -200,15 +200,13 @@ public:
         
         else
         {
-            cout << "Values in Linked list: " << endl;
-            Node* temp = head;
+            cout << endl << "Singly Linked List Values : ";
+            Node * temp = head;
 
-            // Traverse Through List
-            cout << "Position  Data" << endl;
-            while (head != NULL)
+            while (temp != NULL) 
             {
-                cout << "[" << temp->key << " \t   " << temp->data << "]" << endl;
-                temp = temp->next;
+            cout << "(" << temp -> key << "," << temp -> data << ") --> ";
+            temp = temp -> next;
             }
         }
     }
@@ -256,7 +254,7 @@ int main(){
             cin >> data;
             n1->key = key;
             n1->data = data;
-            s1.appendNode(n1);
+            s1.prependNode(n1);
             break;
 
         case 3:
@@ -297,6 +295,6 @@ int main(){
             cout << "Enter a valid option!" << endl << endl;
         }
     } while (option != 0 );
-
+    
     return 0;    
 }
