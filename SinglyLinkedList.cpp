@@ -92,7 +92,7 @@ public:
         // Check if node of same key value already exists
         if (nodeExist(n->key)!=NULL)
         {
-            cout << "Node already exists with key " << n->key << ". Try with a different key value" <<endl;
+            cout << "Node already exists at Position " << n->key << ". Try with a different Position value." <<endl;
         }
 
         else
