@@ -59,7 +59,8 @@ public:
         // Check if node of same key value already exists
         if (nodeExist(n->key)!=NULL)
         {
-            cout << "Node already exists with key " << n->key << ". Try with a different key value" <<endl;
+            cout << "Node already exists at Position " << n->key << endl;
+            cout << ". Try with a different Position value" << endl;
         }
 
         else
@@ -92,8 +93,8 @@ public:
         // Check if node of same key value already exists
         if (nodeExist(n->key)!=NULL)
         {
-            cout << "Node already exists at Position " << n->key <<
-            ". Try with a different Position value." <<endl;
+            cout << "Node already exists at Position " << n->key;
+            cout << ". Try with a different Position value." <<endl;
         }
 
         else
@@ -219,6 +220,7 @@ int main(){
 
     int option;
     int key, k1, data;
+
     do
     {
         cout << "\nWhat operation do you want to perform ?" << endl;
@@ -250,7 +252,8 @@ int main(){
             break;
 
         case 2:
-            cout << "Prepend Node Function \nEnter the Position of Node to be Prepended: " << endl;
+            cout << "Prepend Node Function" << endl;
+            cout << "Enter the Position of Node to be Prepended: " << endl;
             cin >> key;
             cout << "Enter Data of Node to be Prepended: " << endl;
             cin >> data;
@@ -260,7 +263,8 @@ int main(){
             break;
 
         case 3:
-            cout << "Insert Node Function \nEnter the Position of Node after which you want to Insert this Node" << endl;
+            cout << "Insert Node Function" << endl;
+            cout << "Enter the Position of Node after which you want to Insert this Node" << endl;
             cin >> k1;
             cout << "Enter the Position of New Node: " << endl;
             cin >> key;
@@ -297,6 +301,5 @@ int main(){
             cout << "Enter a valid option!" << endl << endl;
         }
     } while (option != 0 );
-    
     return 0;    
 }
