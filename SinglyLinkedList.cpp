@@ -32,7 +32,7 @@ public:
         head = NULL;
     }
 
-    SinglyLinkedList(Node *n)
+    SinglyLinkedList(Node* n)
     {
         head = n;
     }
@@ -54,7 +54,7 @@ public:
     }
 
     //Append Node Function
-    void appendNode(Node *n)
+    void appendNode(Node* n)
     {
         // Check if node of same key value already exists
         if (nodeExist(n->key)!=NULL)
