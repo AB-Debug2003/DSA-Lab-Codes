@@ -129,7 +129,7 @@ public:
             cout << "Linked List already empty. Can't delete" << endl;
         }
         
-        else if (head != NULL)
+        else
         {
             // Check if it is first node
             if (head->key == k)
