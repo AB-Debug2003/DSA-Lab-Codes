@@ -211,7 +211,6 @@ int main() {
       n1 -> key = key1;
       n1 -> data = data1;
       obj.appendNode(n1);
-      //cout<<n1.key<<" = "<<n1.data<<endl;
       break;
 
     case 2:
