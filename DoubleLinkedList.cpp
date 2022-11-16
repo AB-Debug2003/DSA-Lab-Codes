@@ -1,5 +1,4 @@
 #include<iostream>
-
 using namespace std;
 
 class Node {
@@ -173,11 +172,10 @@ class DoublyLinkedList {
       Node * temp = head;
 
       while (temp != NULL) {
-        cout << "(" << temp -> key << "," << temp -> data << ") <--> ";
+        cout << "("<< temp->previous << "," << temp -> key << "," << temp -> data << "," << temp->next << ") <--> ";
         temp = temp -> next;
       }
     }
-
   }
 
 };
@@ -187,6 +185,7 @@ int main() {
   DoublyLinkedList obj;
   int option;
   int key1, k1, data1;
+  cout << "---Doubly Linked List---" << endl;
   do {
     cout << "\nWhat operation do you want to perform? Select Option number. Enter 0 to exit." << endl;
     cout << "1. appendNode()" << endl;

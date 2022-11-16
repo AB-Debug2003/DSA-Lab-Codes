@@ -220,7 +220,7 @@ int main(){
 
     int option;
     int key, k1, data;
-
+    cout << "---Singly Linked List---" << endl;
     do
     {
         cout << "\nWhat operation do you want to perform ?" << endl;
