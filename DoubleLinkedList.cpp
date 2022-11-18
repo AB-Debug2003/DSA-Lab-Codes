@@ -2,8 +2,8 @@
 using namespace std;
 
 class Node {
-  public:
-    int key;
+public:
+  int key;
   int data;
   Node * next;
   Node * previous;
@@ -14,6 +14,7 @@ class Node {
     next = NULL;
     previous = NULL;
   }
+  
   Node(int k, int d) {
     key = k;
     data = d;
