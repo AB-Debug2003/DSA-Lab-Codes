@@ -208,7 +208,7 @@ public:
 
             while (temp != NULL) 
             {
-            cout << temp -> key << "          " << temp -> data << endl;
+            cout << "(" << temp->key << "," << temp->data << "," << temp->next << ") <--> " <<endl;
             temp = temp -> next;
             }
         }
