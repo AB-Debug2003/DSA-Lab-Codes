@@ -233,8 +233,8 @@ int main(){
 		cout << "7. Clear Screen" << endl;
         cout << "0. Exit" << endl;
 		cin >> option;
-
         Node* n1 = new Node();
+        
         switch (option)
         {
         case 0:

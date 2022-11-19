@@ -257,84 +257,84 @@ int main() {
   int key1, k1, data1;
   cout << "---Circular Linked List---" << endl;
   do{
-        cout << "\nWhat operation do you want to perform? Select Option number. Enter 0 to exit." << endl;
-        cout << "1. appendNode()" << endl;
-        cout << "2. prependNode()" << endl;
-        cout << "3. insertNodeAfter()" << endl;
-        cout << "4. deleteNodeByKey()" << endl;
-        cout << "5. updateNodeByKey()" << endl;
-        cout << "6. print()" << endl;
-        cout << "7. Clear Screen" << endl << endl;
+      cout << "\nWhat operation do you want to perform? Select Option number. Enter 0 to exit." << endl;
+      cout << "1. appendNode()" << endl;
+      cout << "2. prependNode()" << endl;
+      cout << "3. insertNodeAfter()" << endl;
+      cout << "4. deleteNodeByKey()" << endl;
+      cout << "5. updateNodeByKey()" << endl;
+      cout << "6. print()" << endl;
+      cout << "7. Clear Screen" << endl << endl;
 
-        cin >> option;
-        Node * n1 = new Node();
+      cin >> option;
+      Node * n1 = new Node();
 
-        switch (option) 
-        {
-            case 0:
-                cout << "Program Exited!" << endl;
-                break;
+      switch (option) 
+      {
+          case 0:
+              cout << "Program Exited!" << endl;
+              break;
 
-            case 1:
-                cout << "Append Node Operation" << endl;
-                cout << "Enter key of the Node to be Appended: " ;
-                cin >> key1;
-                cout << "Enter data of the Node to be Appended: " ;
-                cin >> data1;
-                n1 -> key = key1;
-                n1 -> data = data1;
-                obj.appendNode(n1);
-                break;
+          case 1:
+              cout << "Append Node Operation" << endl;
+              cout << "Enter key of the Node to be Appended: " ;
+              cin >> key1;
+              cout << "Enter data of the Node to be Appended: " ;
+              cin >> data1;
+              n1 -> key = key1;
+              n1 -> data = data1;
+              obj.appendNode(n1);
+              break;
 
-            case 2:
-                cout << "Prepend Node Operation" << endl;
-                cout << " Enter key of the Node to be Prepended: ";
-                cin >> key1;
-                cout << "Enter data of the Node to be Appended: " ;
-                cin >> data1;
-                n1 -> key = key1;
-                n1 -> data = data1;
-                obj.prependNode(n1);
-                break;
+          case 2:
+              cout << "Prepend Node Operation" << endl;
+              cout << " Enter key of the Node to be Prepended: ";
+              cin >> key1;
+              cout << "Enter data of the Node to be Appended: " ;
+              cin >> data1;
+              n1 -> key = key1;
+              n1 -> data = data1;
+              obj.prependNode(n1);
+              break;
 
-            case 3:
-                cout << "Insert Node After Operation" << endl;
-                cout << "Enter key of existing Node after which you want to Insert this New node: ";
-                cin >> k1;
-                cout << "Enter key of the New Node first: " << endl;
-                cin >> key1;
-                cout << "Enter data of the New Node first: " << endl;
-                cin >> data1;
-                n1 -> key = key1;
-                n1 -> data = data1;
-                obj.insertNodeAfter(k1, n1);
-                break;
+          case 3:
+              cout << "Insert Node After Operation" << endl;
+              cout << "Enter key of existing Node after which you want to Insert this New node: ";
+              cin >> k1;
+              cout << "Enter key of the New Node first: " << endl;
+              cin >> key1;
+              cout << "Enter data of the New Node first: " << endl;
+              cin >> data1;
+              n1 -> key = key1;
+              n1 -> data = data1;
+              obj.insertNodeAfter(k1, n1);
+              break;
 
-            case 4:
-                cout << "Delete Node Operation" << endl;
-                cout << "Enter key of the Node to be deleted: ";
-                cin >> k1;
-                obj.deleteNodeByKey(k1);
-                break;
+          case 4:
+              cout << "Delete Node Operation" << endl;
+              cout << "Enter key of the Node to be deleted: ";
+              cin >> k1;
+              obj.deleteNodeByKey(k1);
+              break;
 
-            case 5:
-                cout << "Update Node Operation" << endl;
-                cout << "Enter key of the node to be updated: ";
-                cin >> key1;
-                cout << "Enter NEW data: ";
-                cin >> data1;
-                obj.updateNodeByKey(key1, data1);
-                break;
+          case 5:
+              cout << "Update Node Operation" << endl;
+              cout << "Enter key of the node to be updated: ";
+              cin >> key1;
+              cout << "Enter NEW data: ";
+              cin >> data1;
+              obj.updateNodeByKey(key1, data1);
+              break;
 
-            case 6:
-                obj.printList();
-                break;
-            case 7:
-                system("cls");
-                break;
-            default:
-                cout << "Enter Proper Option number " << endl;
-        }
+          case 6:
+              obj.printList();
+              break;
+          case 7:
+              system("cls");
+              break;
+          default:
+              cout << "Enter Proper Option number " << endl;
+      }
 
   } while (option != 0);
 

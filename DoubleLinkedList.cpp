@@ -40,7 +40,8 @@ class DoublyLinkedList {
     Node * ptr = head;
 
     while (ptr != NULL) {
-      if (ptr -> key == k) {
+      if (ptr -> key == k) 
+      {
         temp = ptr;
       }
       ptr = ptr -> next;
@@ -52,13 +53,21 @@ class DoublyLinkedList {
   // 2. Append a node to the list
 
   void appendNode(Node * n) {
-    if (nodeExists(n -> key) != NULL) {
+    if (nodeExists(n -> key) != NULL) 
+    {
       cout << "Node Already exists with key value : " << n -> key << ". Append another node with different Key value" << endl;
-    } else {
-      if (head == NULL) {
+    } 
+
+    else 
+    {
+      if (head == NULL) 
+      {
         head = n;
         cout << "Node Appended as Head Node" << endl;
-      } else {
+      } 
+
+      else 
+      {
         Node * ptr = head;
         while (ptr -> next != NULL) {
           ptr = ptr -> next;
@@ -74,11 +83,18 @@ class DoublyLinkedList {
   void prependNode(Node * n) {
     if (nodeExists(n -> key) != NULL) {
       cout << "Node Already exists with key value : " << n -> key << ". Append another node with different Key value" << endl;
-    } else {
-      if (head == NULL) {
+    } 
+
+    else 
+    {
+      if (head == NULL) 
+      {
         head = n;
         cout << "Node Prepended as Head Node" << endl;
-      } else {
+      } 
+
+      else 
+      {
         head -> previous = n;
         n -> next = head;
         head = n;
@@ -89,33 +105,39 @@ class DoublyLinkedList {
   }
 
   // 4. Insert a Node after a particular node in the list
-  void insertNodeAfter(int k, Node * n) {
+  void insertNodeAfter(int k, Node * n) 
+  {
     Node * ptr = nodeExists(k);
-    if (ptr == NULL) {
+    if (ptr == NULL) 
+    {
       cout << "No node exists with key value: " << k << endl;
-    } else {
-      if (nodeExists(n -> key) != NULL) {
+    } 
+    else 
+    {
+      if (nodeExists(n -> key) != NULL) 
+      {
         cout << "Node Already exists with key value : " << n -> key << ". Append another node with different Key value" << endl;
-      } else {
+      } 
+      else 
+      {
         Node * nextNode = ptr -> next;
         // inserting at the end
-        if (nextNode == NULL) {
+        if (nextNode == NULL) 
+        {
           ptr -> next = n;
           n -> previous = ptr;
-          cout << "Node Inserted at the END" << endl;
+          cout << "Node Inserted!" << endl;
         }
 
         //inserting in between
-        else {
+        else 
+        {
           n -> next = nextNode;
           nextNode -> previous = n;
           n -> previous = ptr;
           ptr -> next = n;
-
-          cout << "Node Inserted in Between" << endl;
-
+          cout << "Node Inserted!" << endl;
         }
-
       }
     }
   }
@@ -123,29 +145,36 @@ class DoublyLinkedList {
   // 5. Delete node by unique key. Basically De-Link not delete
   void deleteNodeByKey(int k) {
     Node * ptr = nodeExists(k);
-    if (ptr == NULL) {
+    if (ptr == NULL) 
+    {
       cout << "No node exists with key value: " << k << endl;
-    } else {
+    }
 
-      if (head -> key == k) {
+    else 
+    {
+      if (head -> key == k) 
+      {
         head = head -> next;
         cout << "Node UNLINKED with keys value : " << k << endl;
-      } else {
+      } 
+
+      else 
+      {
         Node * nextNode = ptr -> next;
         Node * prevNode = ptr -> previous;
         // deleting at the end
-        if (nextNode == NULL) {
-
+        if (nextNode == NULL) 
+        {
           prevNode -> next = NULL;
-          cout << "Node Deleted at the END" << endl;
+          cout << "Node Deleted!" << endl;
         }
 
         //deleting in between
-        else {
+        else 
+        {
           prevNode -> next = nextNode;
           nextNode -> previous = prevNode;
-          cout << "Node Deleted in Between" << endl;
-
+          cout << "Node Deleted!" << endl;
         }
       }
     }
@@ -158,7 +187,10 @@ class DoublyLinkedList {
     if (ptr != NULL) {
       ptr -> data = d;
       cout << "Node Data Updated Successfully" << endl;
-    } else {
+    } 
+    
+    else 
+    {
       cout << "Node Doesn't exist with key value : " << k << endl;
     }
 
@@ -166,9 +198,13 @@ class DoublyLinkedList {
 
   // 7th printing
   void printList() {
-    if (head == NULL) {
+    if (head == NULL) 
+    {
       cout << "No Nodes in Doubly Linked List";
-    } else {
+    } 
+    
+    else 
+    {
       cout << endl << "Doubly Linked List Values : ";
       Node * temp = head;
 
