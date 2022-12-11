@@ -95,6 +95,50 @@ public:
 		}
 	}
 
+	void merge(int* arr, int left, int mid, int right) 
+	{
+		int i = left;
+		int j = mid + 1;
+		int k = left;
+
+		int temp[5];
+
+		while (i <= mid && j <= right) 
+		{
+			if (arr[i] <= arr[j]) 
+			{
+				temp[k] = arr[i];
+				i++;
+				k++;
+			}
+			else 
+			{
+				temp[k] = arr[j];
+				j++;
+				k++;
+			}
+
+		}
+
+		while (i <= mid) 
+		{
+			temp[k] = arr[i];
+			i++;
+			k++;
+		}
+
+		while (j <= right) 
+		{
+			temp[k] = arr[j];
+			j++;
+			k++;
+		}
+
+		for (int p = left; p <= right; p++) 
+		{
+			arr[p] = temp[p];
+		}
+	}
 };
 
 class ArrayList{
@@ -253,11 +297,10 @@ public:
 
 	void mergeSort() 
 	{
-		if (0 < total) {
-			// find midpoint
+		if (0 < total) 
+		{
 			int mid = (0 + total) / 2;
-
-			// recurcive mergesort first and second halves 
+			
 			mergeSort();
 			mergeSort();
 
@@ -272,16 +315,18 @@ public:
 		int j = mid + 1;
 		int k = left;
 
-		/* create temp array */
 		int temp[5];
 
-		while (i <= mid && j <= right) {
-			if (arr[i] <= arr[j]) {
+		while (i <= mid && j <= right) 
+		{
+			if (arr[i] <= arr[j]) 
+			{
 				temp[k] = arr[i];
 				i++;
 				k++;
 			}
-			else {
+			else 
+			{
 				temp[k] = arr[j];
 				j++;
 				k++;
@@ -289,23 +334,22 @@ public:
 
 		}
 
-		/* Copy the remaining elements of first half, if there are any */
-		while (i <= mid) {
+		while (i <= mid) 
+		{
 			temp[k] = arr[i];
 			i++;
 			k++;
-
 		}
 
-		/* Copy the remaining elements of second half, if there are any */
-		while (j <= right) {
+		while (j <= right) 
+		{
 			temp[k] = arr[j];
 			j++;
 			k++;
 		}
 
-		/* Copy the temp array to original array */
-		for (int p = left; p <= right; p++) {
+		for (int p = left; p <= right; p++) 
+		{
 			arr[p] = temp[p];
 		}
 	}
