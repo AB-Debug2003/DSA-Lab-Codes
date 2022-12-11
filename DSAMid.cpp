@@ -3,10 +3,9 @@
 using namespace std;
 
 class Stack {
-private:
+public:
 	int top;
 	int arr[5];
-public:
 	Stack() {
 		top = -1;
 		for (int i = 0; i < 5; i++) {
@@ -61,20 +60,71 @@ public:
 			cout << arr[i] << endl;
 		}
 	}
+	
+	void bubbleSort()
+	{
+		for (int i = 0; i < top; i++)
+		{
+			for (int j = 0; j < (top - i - 1); j++)
+			{
+				if (arr[j] > arr[j + 1])
+				{
+					int temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+		}
+	}
+
+	void mergeSort(int left, int right) 
+	{
+		left = 0;
+		right = top;
+		if (left < right) 
+		{
+			// find midpoint
+			int mid = (left + right) / 2;
+
+			// recurcive mergesort first and second halves 
+			mergeSort(left, mid);
+			mergeSort(mid + 1, right);
+
+			// merge
+			merge(arr, left, mid, right);
+		}
+	}
+
 };
 
 class ArrayList{
+public:
     int* arr;
     int total;
     int size;
 
-public:
     ArrayList()
     {
         size = 5;
         arr = new int[size];
         total = 0;
     }
+
+	void bubbleSort()
+	{
+		for (int i = 0; i < total; i++)
+		{
+			for (int j = 0; j < (total - i - 1); j++)
+			{
+				if (arr[j] > arr[j + 1])
+				{
+					int temp = arr[j];
+					arr[j] = arr[j + 1];
+					arr[j + 1] = temp;
+				}
+			}
+		}
+	}
 
     bool isFull()
     {
@@ -200,86 +250,74 @@ public:
             cout << "]" << endl;
         }
     }
-};
 
-void bubbleSort(int arr[], int size)
-{
-	for (int i = 0; i < size; i++)
+	void mergeSort() 
 	{
-		for (int j = 0; j < (size - i - 1); j++)
-		{
-			if (arr[j] > arr[j + 1])
-			{
-				int temp = arr[j];
-				arr[j] = arr[j + 1];
-				arr[j + 1] = temp;
-			}
+		if (0 < total) {
+			// find midpoint
+			int mid = (0 + total) / 2;
+
+			// recurcive mergesort first and second halves 
+			mergeSort();
+			mergeSort();
+
+			// merge
+			merge(arr, 0, mid, total);
 		}
 	}
-}
 
-void merge(int arr[], int left, int mid, int right) {
-	int i = left;
-	int j = mid + 1;
-	int k = left;
+	void merge(int* arr, int left, int mid, int right) 
+	{
+		int i = left;
+		int j = mid + 1;
+		int k = left;
 
-	/* create temp array */
-	int temp[5];
+		/* create temp array */
+		int temp[5];
 
-	while (i <= mid && j <= right) {
-		if (arr[i] <= arr[j]) {
+		while (i <= mid && j <= right) {
+			if (arr[i] <= arr[j]) {
+				temp[k] = arr[i];
+				i++;
+				k++;
+			}
+			else {
+				temp[k] = arr[j];
+				j++;
+				k++;
+			}
+
+		}
+
+		/* Copy the remaining elements of first half, if there are any */
+		while (i <= mid) {
 			temp[k] = arr[i];
 			i++;
 			k++;
+
 		}
-		else {
+
+		/* Copy the remaining elements of second half, if there are any */
+		while (j <= right) {
 			temp[k] = arr[j];
 			j++;
 			k++;
 		}
 
+		/* Copy the temp array to original array */
+		for (int p = left; p <= right; p++) {
+			arr[p] = temp[p];
+		}
 	}
-
-	/* Copy the remaining elements of first half, if there are any */
-	while (i <= mid) {
-		temp[k] = arr[i];
-		i++;
-		k++;
-
-	}
-
-	/* Copy the remaining elements of second half, if there are any */
-	while (j <= right) {
-		temp[k] = arr[j];
-		j++;
-		k++;
-	}
-
-	/* Copy the temp array to original array */
-	for (int p = left; p <= right; p++) {
-		arr[p] = temp[p];
-	}
-}
-
-void mergeSort(int arr[], int left, int right) {
-	if (left < right) {
-		// find midpoint
-		int mid = (left + right) / 2;
-
-		// recurcive mergesort first and second halves 
-		mergeSort(arr, left, mid);
-		mergeSort(arr, mid + 1, right);
-
-		// merge
-		merge(arr, left, mid, right);
-	}
-}
+};
 
 int main(){
 	int option = 'y';
 	int data_struct;
 	do
 	{
+		Stack* s1 = new Stack;
+		ArrayList* a = new ArrayList;
 		do
 		{
 			cout << "Select a data structure of your choice or 0 to exit menu" << endl;
@@ -293,7 +331,7 @@ int main(){
 					
 				case 1:
 					{
-						Stack s1;
+						
 						int stackInput, stackValue;
 						cout << "Stack Selected successfully!" << endl;
 						do
@@ -316,17 +354,17 @@ int main(){
 									cout << "------Push Function-----" << endl;
 									cout << "Enter a value to push: ";
 									cin >> stackValue;
-									s1.push(stackValue);
+									s1->push(stackValue);
 									break;
 
 								case 2:
 									cout << "-----Pop Function-----" << endl;
 									cout << "Enter a value to pop: ";
-									cout << "Poped Value:" << s1.pop();
+									cout << "Poped Value:" << s1->pop();
 									break;
 
 								case 3:
-									if (s1.isEmpty())
+									if (s1->isEmpty())
 									{
 										cout << "Stack is Empty!" << endl;
 									}
@@ -337,7 +375,7 @@ int main(){
 									break;
 
 								case 4:
-									if (s1.isFull())
+									if (s1->isFull())
 									{
 										cout << "Stack is full!" << endl;
 									}
@@ -348,11 +386,11 @@ int main(){
 									break;
 
 								case 5:
-									cout << "Count = " << s1.count();
+									cout << "Count = " << s1->count();
 									break;
 
 								case 6:
-									s1.display();
+									s1->display();
 									break;
 
 								case 7:
@@ -369,7 +407,6 @@ int main(){
 
 				case 2:
 					{
-						ArrayList a;
 						int listInput, listValue, newValue;
 						cout << "List Selected successfully!" << endl;
 						do
@@ -392,23 +429,23 @@ int main(){
 									cout << "----Insert Function----" << endl;
 									cout << "Enter a value to insert:";
 									cin >> listValue;
-									a.insert(listValue);
+									a->insert(listValue);
 									break;
 
 								case 2:
 									cout << "----Delete Function----" << endl;
 									cout << "Enter a value to delete:";
 									cin >> listValue;
-									a.remove(listValue);
+									a->remove(listValue);
 									break;
 
 								case 3:
 									cout << "----Find Function----" << endl;
 									cout << "Enter a value to find:";
 									cin >> listValue;
-									if (a.find(listValue) != -1)
+									if (a->find(listValue) != -1)
 									{
-										cout << "Value Found at position " << a.find(listValue) + 1 << endl;
+										cout << "Value Found at position " << a->find(listValue) + 1 << endl;
 									}
 									else
 									{
@@ -422,17 +459,17 @@ int main(){
 									cin >> listValue;
 									cout << "Enter new Value: ";
 									cin >> newValue;
-									a.update(listValue, newValue);
+									a->update(listValue, newValue);
 									break;
 
 								case 5:
 									cout << "----Clear List Function----" << endl;
-									a.clear();
+									a->clear();
 									break;
 
 								case 6:
 									cout << "----Display Function----" << endl;
-									a.display();
+									a->display();
 									break;
 
 								case 7:
@@ -450,6 +487,49 @@ int main(){
 						break;
 			}
 		}while(data_struct != 0);
+		
+		int sortOption;
+		do
+		{
+			cout << "Select a sorting method to apply" << endl;
+			cout << "1. Merge Sort" << endl;
+			cout << "2. Bubble Sort" << endl << endl;
+			cin >> sortOption;
+			switch (sortOption)
+			{
+				case 0:
+					break;
+				
+				case 1:
+					cout << "----Merge Sort----" << endl;
+					if (data_struct == 1)
+					{
+						s1->mergeSort(0,5);
+					}
+					else
+					{
+						a->mergeSort();
+					}
+					break;
+				
+				case 2:
+					cout << "----Bubble Sort----" << endl;
+					if (data_struct == 1)
+					{
+						s1->bubbleSort();
+					}
+					else
+					{
+						a->bubbleSort();
+					}
+					break;
+					
+				default:
+					cout << "Enter a valid option number" << endl;
+					break;
+			}
+		} while (sortOption != 0);
+		
 
 		cout << "Do you want to run program again?" << endl;
 		cout << "'y' = Yes" << endl;
