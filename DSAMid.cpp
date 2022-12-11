@@ -72,22 +72,8 @@ public:
     ArrayList()
     {
         size = 5;
-        arr = new int;
+        arr = new int[size];
         total = 0;
-    }
-
-    void insert(int value)
-    {
-        if (isFull())
-        {
-            cout << "Full" << endl;
-        }
-        else
-        {
-            arr[total] = value;
-            total++;
-        }
-        
     }
 
     bool isFull()
@@ -99,18 +85,120 @@ public:
         else
         {
             return false;
+        }  
+    }
+
+    bool isEmpty()
+    {
+        if (total == 0)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    void insert(int value)
+    {
+        if (isFull())
+        {
+            size *= 2;
+            int* temp = new int[size];
+            for (int i = 0; i < total; i++)
+            {
+                temp[i] = arr[i];
+            }
+            delete []arr;
+            arr = temp;
+            insert(value);
+        }
+        else
+        {
+            arr[total] = value;
+            total++;
         }
         
     }
 
-    void display()
+    int find(int val)
     {
-        cout << "[";
         for (int i = 0; i < total; i++)
         {
-            cout << arr[i] << " " <<;
+            if (arr[i] == val)
+            {
+                return i;
+                break;
+            }
         }
-        cout << "]" << endl;
+        return -1;
+    }
+
+    void update(int value, int newValue)
+    {
+        if (find(value) != -1)
+        {
+            arr[find(value)] = newValue;
+            cout << "Value Updated!" << endl;
+        }
+        else
+        {
+            cout << "Value Not Found" << endl;
+        }
+        
+    }
+
+    void remove(int value)
+    {
+        if (isEmpty())
+        {
+            cout << "List is Empty" << endl;
+        }
+        else
+        {
+            int index = find(value);
+            //last value
+            if (arr[index] == arr[total-1])
+            {
+                total--;
+                cout << "Value Deleted" << endl;
+            }
+            else
+            {
+                for (int i = index; i < total-1; i++)
+                {
+                    arr[i] = arr[i+1];
+                }
+                total--;
+                cout << "Value Deleted" << endl;
+            }
+        }
+    }
+
+    void clear()
+    {
+        total = 0;
+        size = 5;
+        delete []arr;
+        arr = new int[size];
+    }
+
+    void display()
+    {
+        if(isEmpty())
+        {
+            cout << "List is Empty" << endl;
+        }
+        else
+        {
+            cout << "[ ";
+            for (int i = 0; i < total; i++)
+            {
+                cout << arr[i] << " ";
+            }
+            cout << "]" << endl;
+        }
     }
 };
 
@@ -173,8 +261,6 @@ void merge(int arr[], int left, int mid, int right) {
 	}
 }
 
-/* left is for left index and right is right index of the
-sub-array of arr to be sorted */
 void mergeSort(int arr[], int left, int right) {
 	if (left < right) {
 		// find midpoint
@@ -194,96 +280,182 @@ int main(){
 	int data_struct;
 	do
 	{
-		cout << "Select a data structure of your choice or 0 to exit menu" << endl;
-		cout << "1. Stack" << endl;
-		cout << "2. List" << endl;
-		cin >> data_struct;
-		switch (data_struct)
+		do
 		{
-			case 0:
-				break;
-			case 1:
-				Stack s1;
-				int input, value;
-				cout << "Stack Selected successfully!" << endl;
-				cout << "What operation do you want to perform? Select Option number. Enter 0 to exit." << endl;
-				cout << "1. Push()" << endl;
-				cout << "2. Pop()" << endl;
-				cout << "3. isEmpty()" << endl;
-				cout << "4. isFull()" << endl;
-				cout << "5. count()" << endl;
-				cout << "6. display()" << endl;
-				cout << "7. Clear Screen" << endl << endl;
-				cin >> input;
-				switch (input)
-				{
-					case 0:
-						break;
-
-					case 1:
-						cout << "------Push Function-----" << endl;
-						cout << "Enter a value to push: ";
-						cin >> value;
-						s1.push(value);
-						break;
-
-					case 2:
-						cout << "-----Pop Function-----" << endl;
-						cout << "Enter a value to pop: ";
-						cout << "Poped Value:" << s1.pop();
-						 break;
-
-					case 3:
-						if (s1.isEmpty())
+			cout << "Select a data structure of your choice or 0 to exit menu" << endl;
+			cout << "1. Stack" << endl;
+			cout << "2. List" << endl << endl;
+			cin >> data_struct;
+			switch (data_struct)
+			{
+				case 0:
+					break;
+					
+				case 1:
+					{
+						Stack s1;
+						int stackInput, stackValue;
+						cout << "Stack Selected successfully!" << endl;
+						do
 						{
-							cout << "Stack is Empty!" << endl;
-						}
-						else
+							cout << "Select Option number. Enter 0 to exit." << endl;
+							cout << "1. Push()" << endl;
+							cout << "2. Pop()" << endl;
+							cout << "3. isEmpty()" << endl;
+							cout << "4. isFull()" << endl;
+							cout << "5. count()" << endl;
+							cout << "6. display()" << endl;
+							cout << "7. Clear Screen" << endl << endl;
+							cin >> stackInput;
+							switch (stackInput)
+							{
+								case 0:
+									break;
+
+								case 1:
+									cout << "------Push Function-----" << endl;
+									cout << "Enter a value to push: ";
+									cin >> stackValue;
+									s1.push(stackValue);
+									break;
+
+								case 2:
+									cout << "-----Pop Function-----" << endl;
+									cout << "Enter a value to pop: ";
+									cout << "Poped Value:" << s1.pop();
+									break;
+
+								case 3:
+									if (s1.isEmpty())
+									{
+										cout << "Stack is Empty!" << endl;
+									}
+									else
+									{
+										cout << "Stack is not Empty!" << endl;
+									}
+									break;
+
+								case 4:
+									if (s1.isFull())
+									{
+										cout << "Stack is full!" << endl;
+									}
+									else
+									{
+										cout << "Stack is not Full!" << endl;
+									}
+									break;
+
+								case 5:
+									cout << "Count = " << s1.count();
+									break;
+
+								case 6:
+									s1.display();
+									break;
+
+								case 7:
+									system("cls");
+									break;
+
+								default:
+									cout << "Error! Enter correct option number" << endl;
+									break;
+							}
+						}while(stackInput != 0);
+					}
+					break;
+
+				case 2:
+					{
+						ArrayList a;
+						int listInput, listValue, newValue;
+						cout << "List Selected successfully!" << endl;
+						do
 						{
-							cout << "Stack is not Empty!" << endl;
-						}
-						break;
+							cout << "Select Option number. Enter 0 to exit." << endl;
+							cout << "1. Insert()" << endl;
+							cout << "2. Delete()" << endl;
+							cout << "3. Find()" << endl;
+							cout << "4. Update()" << endl;
+							cout << "5. Clear List()" << endl;
+							cout << "6. Display()" << endl;
+							cout << "7. Clear Screen" << endl << endl;
+							cin >> listInput;
+							switch (listInput)
+							{
+								case 0:
+									break;
 
-					case 4:
-						if (s1.isFull())
-						{
-							cout << "Stack is full!" << endl;
-						}
-						else
-						{
-							cout << "Stack is not Full!" << endl;
-						}
-						break;
+								case 1:
+									cout << "----Insert Function----" << endl;
+									cout << "Enter a value to insert:";
+									cin >> listValue;
+									a.insert(listValue);
+									break;
 
-					case 5:
-						cout << "Count = " << s1.count();
-						break;
+								case 2:
+									cout << "----Delete Function----" << endl;
+									cout << "Enter a value to delete:";
+									cin >> listValue;
+									a.remove(listValue);
+									break;
 
-					case 6:
-						s1.display();
-						break;
+								case 3:
+									cout << "----Find Function----" << endl;
+									cout << "Enter a value to find:";
+									cin >> listValue;
+									if (a.find(listValue) != -1)
+									{
+										cout << "Value Found at position " << a.find(listValue) + 1 << endl;
+									}
+									else
+									{
+										cout << "Value Not Found!" << endl;
+									}
+									break;
 
-					case 7:
-						system("cls");
-						break;
+								case 4:
+									cout << "----Update Function----" << endl;
+									cout << "Enter a value to update:";
+									cin >> listValue;
+									cout << "Enter new Value: ";
+									cin >> newValue;
+									a.update(listValue, newValue);
+									break;
+
+								case 5:
+									cout << "----Clear List Function----" << endl;
+									a.clear();
+									break;
+
+								case 6:
+									cout << "----Display Function----" << endl;
+									a.display();
+									break;
+
+								case 7:
+									system("cls");
+
+								default:
+									break;
+							}
+						}while(listInput != 0);
+					}
+					break;
 
 					default:
-						cout << "Error! Enter correct option number" << endl;
+						cout << "Enter a valid Option Number" << endl;
 						break;
-				}
-				break;
-			case 2:
-				int input, value;
-				cout << "List Selected successfully!" << endl;
+			}
+		}while(data_struct != 0);
 
-			default:
-				cout << "Enter a valid Option Number" << endl;
-				break;
-		}
-
-
+		cout << "Do you want to run program again?" << endl;
+		cout << "'y' = Yes" << endl;
+		cout << "'n' = No" << endl << endl;
 		cin >> option;
-	} 
-	while (option == 'y');
+		
+	}while (option == 'y');
 	return 0;
 }
