@@ -371,8 +371,7 @@ int main(){
 					break;
 					
 				case 1:
-					{
-						
+					{	
 						int stackInput, stackValue;
 						cout << "Stack Selected successfully!" << endl;
 						do
