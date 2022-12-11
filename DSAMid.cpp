@@ -83,14 +83,11 @@ public:
 		right = top;
 		if (left < right) 
 		{
-			// find midpoint
 			int mid = (left + right) / 2;
 
-			// recurcive mergesort first and second halves 
 			mergeSort(left, mid);
 			mergeSort(mid + 1, right);
 
-			// merge
 			merge(arr, left, mid, right);
 		}
 	}
