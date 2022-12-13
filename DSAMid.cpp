@@ -518,7 +518,7 @@ int main(){
 				cout << "--------------------------" << endl;
 				do
 				{
-					cout << "\nSelect Option number. Enter 0 to exit." << endl;
+					cout << "\nSelect Option number. Enter 0 to go to searching menu." << endl;
 					cout << "1. Insert()" << endl;
 					cout << "2. Delete()" << endl;
 					cout << "3. Find()" << endl;
