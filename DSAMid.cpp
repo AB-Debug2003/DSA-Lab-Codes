@@ -22,7 +22,10 @@ public:
 		cout << "Enter Stack size: ";
 		cin >> stacksize;
 		arr[stacksize-1];
-		Stack();
+		for (int i = 0; i < stacksize; i++) 
+		{
+			arr[i] = 0;
+		}
 	}
 
 	bool isEmpty() {
@@ -87,80 +90,6 @@ public:
 		cout << endl;
 		for (int i = stacksize-1; i >= 0; i--) {
 			cout << "[" << arr[i] << "]" << endl;
-		}
-	}
-	
-	void bubbleSort()
-	{
-		for (int i = 0; i < top+1; i++)
-		{
-			for (int j = 0; j < ((top+1) - i - 1); j++)
-			{
-				if (arr[j] > arr[j + 1])
-				{
-					int temp = arr[j];
-					arr[j] = arr[j + 1];
-					arr[j + 1] = temp;
-				}
-			}
-		}
-	}
-
-	void mergeSort(int left, int right) 
-	{
-		if (left < right) 
-		{
-			int mid = (left + right) / 2;
-
-			mergeSort(left, mid);
-			mergeSort(mid + 1, right);
-
-			merge(arr, left, mid, right);
-		}
-	}
-
-	void merge(int* arr, int left, int mid, int right) 
-	{
-		int i = left;
-		int j = mid + 1;
-		int k = left;
-
-		int temp[5];
-
-		while (i <= mid && j <= right) 
-		{
-			if (arr[i] <= arr[j]) 
-			{
-				temp[k] = arr[i];
-				i++;
-				k++;
-			}
-			else 
-			{
-				temp[k] = arr[j];
-				j++;
-				k++;
-			}
-
-		}
-
-		while (i <= mid) 
-		{
-			temp[k] = arr[i];
-			i++;
-			k++;
-		}
-
-		while (j <= right) 
-		{
-			temp[k] = arr[j];
-			j++;
-			k++;
-		}
-
-		for (int p = left; p <= right; p++) 
-		{
-			arr[p] = temp[p];
 		}
 	}
 };
@@ -318,62 +247,78 @@ public:
             cout << "]" << endl;
         }
     }
+};
 
-	void merge(int arr[], int l, int m, int r, int size)
+void bubbleSort(int arr[], int size)
+{
+	for (int i = 0; i < size; i++)
 	{
-		int i = l;
-		int j = m + 1;
-		int k = l;
-
-		int temp[size];
-
-		while (i <= m && j <= r) 
+		for (int j = 0; j < ((size) - i - 1); j++)
 		{
-			if (arr[i] <= arr[j]) 
+			if (arr[j] > arr[j + 1])
 			{
-				temp[k] = arr[i];
-				i++;
-				k++;
-			}
-			else 
-			{
-				temp[k] = arr[j];
-				j++;
-				k++;
+				int temp = arr[j];
+				arr[j] = arr[j + 1];
+				arr[j + 1] = temp;
 			}
 		}
+	}
+}
 
-		while (i <= m) 
+void merge(int arr[], int l, int m, int r, int size)
+{
+	int i = l;
+	int j = m + 1;
+	int k = l;
+
+	int temp[size];
+
+	while (i <= m && j <= r) 
+	{
+		if (arr[i] <= arr[j]) 
 		{
 			temp[k] = arr[i];
 			i++;
 			k++;
 		}
-
-		while (j <= r) 
+		else 
 		{
 			temp[k] = arr[j];
 			j++;
 			k++;
 		}
-
-		for (int p = l; p <= r; p++) 
-		{
-			arr[p] = temp[p];
-		}
 	}
 
-	void mergeSort(int arr[], int l, int r, int size)
+	while (i <= m) 
 	{
-		if (l < r) 
-		{
-			int m = (l + r) / 2;
-			mergeSort(arr, l, m, size);
-			mergeSort(arr, m + 1, r, size);
-			merge(arr, l, m, r, size);
-		}
+		temp[k] = arr[i];
+		i++;
+		k++;
 	}
-};
+
+	while (j <= r) 
+	{
+		temp[k] = arr[j];
+		j++;
+		k++;
+	}
+
+	for (int p = l; p <= r; p++) 
+	{
+		arr[p] = temp[p];
+	}
+}
+
+void mergeSort(int arr[], int l, int r, int size)
+{
+	if (l < r) 
+	{
+		int m = (l + r) / 2;
+		mergeSort(arr, l, m, size);
+		mergeSort(arr, m + 1, r, size);
+		merge(arr, l, m, r, size);
+	}
+}
 
 void linearSearch(int a[], int n, int size) {
   int temp = -1;
@@ -611,13 +556,13 @@ int main(){
 				cout << "------------------------" << endl;
 				if (data_struct == 1)
 				{
-					s1->bubbleSort();
+					bubbleSort(s1->arr, s1->top);
 					cout << "Data Sorted!" << endl;
 					s1->display();
 				}
 				else
 				{
-					a->bubbleSort();
+					bubbleSort(a->arr, a->total);
 					cout << "Data Sorted" << endl;
 					a->display();
 				}
@@ -629,13 +574,13 @@ int main(){
 				cout << "-----------------------" << endl;
 				if (data_struct == 1)
 				{
-					s1->mergeSort(0, s1->top);
+					mergeSort(s1->arr,0, s1->top, s1->top);
 					cout << "Data Sorted!" << endl;
 					s1->display();
 				}
 				else
 				{
-					a->mergeSort(a->arr, 0, a->total-1, a->total);
+					mergeSort(a->arr, 0, a->total-1, a->total);
 					cout << "Data Sorted" << endl;
 					a->display();
 				}
